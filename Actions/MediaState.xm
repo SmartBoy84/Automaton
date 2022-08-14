@@ -7,7 +7,7 @@
 -(void) performActionForIdentifier:(NSString*)identifier withParameters:(NSDictionary*)parameters success:(void (^)(id _Nullable output))success fail:(void (^)(NSString *error))fail
 {    
     SBMediaController *mediaController = [%c(SBMediaController) sharedInstance];
-    success(@([mediaController isPaused] ? "0" : [mediaController isPlaying] ? "1" : "2"));
+    success(@([mediaController isPaused] ? "1" : [mediaController isPlaying] ? "2" : "3"));
 }
 
 -(NSString*) nameForIdentifier:(NSString*)identifier {
