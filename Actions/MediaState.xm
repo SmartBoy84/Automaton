@@ -21,7 +21,7 @@
 -(NSDictionary*) outputDefinitionForIdentifier:(NSString*)identifier {
     return @{
         @"type" : @"number",
-        @"name" : @"Get playing state"
+        @"name" : @"Playing state"
     };
 }
 @end
