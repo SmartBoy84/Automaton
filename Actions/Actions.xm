@@ -27,8 +27,8 @@
 @end
 
 NSArray *screenModes = @[
-  @"Prevent",
-  @"Allow"
+  @"Allow",
+  @"Prevent"
 ];
 
 NSString *wakeKey = @"State";
@@ -67,7 +67,7 @@ NSString *maxWake = @"Max preventions";
         @{
             @"type" : @"enum",
             @"key" : wakeKey,
-            @"placeholder": @"Enable",
+            @"defaultValue": @"Prevent",
             @"items" : @[@"Allow", @"Prevent"]
         },
         @{
@@ -79,7 +79,7 @@ NSString *maxWake = @"Max preventions";
             @"defaultValue" : @(1),
             @"condition" : @{
                 @"key" : wakeKey,
-                @"value" : @"Allow"
+                @"value" : @"Prevent"
             }
         }
     ];
