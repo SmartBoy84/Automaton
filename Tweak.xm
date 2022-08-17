@@ -73,13 +73,20 @@ static NSString *pausedetector_eventName = @"PauseDetector";
 }
 %end
 
-bool preventWake = NO;
-void setToken(bool state) { preventWake = state; }
+int preventCounter = 0;
+
+void setToken(int max) { 
+	NSLog(@"{automator} max counter set to %d", max);
+	preventCounter = max;
+}
 
 %hook SBBacklightController
 - (void) turnOnScreenFullyWithBacklightSource: (long long) arg0 {
 
-	if (preventWake){ return; }
+	if (preventCounter > 0){ 
+		preventCounter--;
+		return; 
+	}
 	else{ %orig; }
 }
 %end

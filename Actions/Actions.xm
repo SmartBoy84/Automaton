@@ -26,28 +26,36 @@
 }
 @end
 
-NSDictionary *screenModes = @{
-  @"Allow": @YES,
-  @"Prevent": @NO
-};
+NSArray *screenModes = @[
+  @"Prevent",
+  @"Allow"
+];
 
-NSString *wakeKey = @"state";
+NSString *wakeKey = @"State";
+NSString *maxWake = @"Max preventions";
 
 @interface RequestWakePrevention : PCAction
 @end
 @implementation RequestWakePrevention
 -(void) performActionForIdentifier:(NSString*)identifier withParameters:(NSDictionary*)parameters success:(void (^)(id _Nullable output))success fail:(void (^)(NSString *error))fail {
-    if ([[screenModes allKeys] containsObject:parameters[wakeKey]]) {
-        setToken(screenModes[parameters[wakeKey]]);
-        success(NULL);
-    }
-    else{
-        fail(@"Incorrect parameters for 'prevent wake'");
-    }
+    
+        if ([screenModes indexOfObject:parameters[wakeKey]] == 0){
+            setToken(0);
+            success(NULL);
+            return;
+        }
+
+        else if ([screenModes indexOfObject:parameters[wakeKey]] == 1 && [parameters[maxWake] integerValue] > 0){
+            setToken([parameters[maxWake] integerValue]);
+            success(NULL);
+            return;
+        }
+    
+    fail(@"Incorrect parameters for 'prevent wake'");
 }
 
 -(NSString*) nameForIdentifier:(NSString*)identifier {
-    return @"Disable/enabke screen wakeup";
+    return @"Disable/enable screen wakeup";
 }
 
 -(NSString*) descriptionSummaryForIdentifier:(NSString*)identifier {
@@ -61,6 +69,18 @@ NSString *wakeKey = @"state";
             @"key" : wakeKey,
             @"placeholder": @"Enable",
             @"items" : @[@"Allow", @"Prevent"]
+        },
+        @{
+            @"type" : @"number",
+            @"key" : maxWake,
+            @"label" : maxWake,
+            @"allowsDecimalNumbers" : @(NO),
+            @"allowsNegativeNumbers" : @(NO),
+            @"defaultValue" : @(1),
+            @"condition" : @{
+                @"key" : wakeKey,
+                @"value" : @"Allow"
+            }
         }
     ];
 }

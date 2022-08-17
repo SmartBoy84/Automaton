@@ -1,1 +1,1 @@
-void setToken(bool state);
+void setToken(int prevent);
