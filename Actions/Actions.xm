@@ -47,7 +47,7 @@ NSString *wakeKey = @"state";
 }
 
 -(NSString*) nameForIdentifier:(NSString*)identifier {
-    return @"Prevent wake";
+    return @"Disable/enabke screen wakeup";
 }
 
 -(NSString*) descriptionSummaryForIdentifier:(NSString*)identifier {
