@@ -59,13 +59,12 @@ NSString *wakeKey = @"state";
         @{
             @"type" : @"enum",
             @"key" : wakeKey,
-            @"label" : @"Set screen allow/disallow",
-            @"placeholder": @"state"
+            @"placeholder": @"Enable"
         }
     ];
 }
 -(NSString*) parameterSummaryForIdentifier:(NSString*)identifier {
-    return @"${%@} screen wakeup";
+    return [NSString stringWithFormat:@"${%@} screen wakeup", wakeKey];
 }
 @end
 
