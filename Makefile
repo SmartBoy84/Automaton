@@ -3,8 +3,8 @@ ARCHS = arm64 arm64e
 
 include $(THEOS)/makefiles/common.mk
 
-TWEAK_NAME = ActionsBank
-$(TWEAK_NAME)_FILES = $(wildcard Actions/*.xm)
+TWEAK_NAME = Automaton
+$(TWEAK_NAME)_FILES = Tweak.xm $(wildcard Actions/*.xm)
 $(TWEAK_NAME)_LIBRARIES = powercuts
 
 include $(THEOS_MAKE_PATH)/tweak.mk
