@@ -59,7 +59,8 @@ NSString *wakeKey = @"state";
         @{
             @"type" : @"enum",
             @"key" : wakeKey,
-            @"placeholder": @"Enable"
+            @"placeholder": @"Enable",
+            @"items" : @[@"Allow", @"Prevent"]
         }
     ];
 }
