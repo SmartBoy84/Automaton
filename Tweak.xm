@@ -1,6 +1,7 @@
 #include <dispatch/dispatch.h>
 #import <libactivator/libactivator.h>
 #import <Foundation/Foundation.h>
+#import "Tweak.h"
 
 #define LASendEventWithName(eventName) \
 	[LASharedActivator sendEventToListener:[LAEvent eventWithName:eventName mode:[LASharedActivator currentEventMode]]]
@@ -69,5 +70,16 @@ static NSString *pausedetector_eventName = @"PauseDetector";
     %orig;
     LASendEventWithName(pausedetector_eventName);
     // NSLog(@"[pausedetector] media was [un]paused");
+}
+%end
+
+bool preventWake = NO;
+void setToken(bool state) { preventWake = state; }
+
+%hook SBBacklightController
+- (void) turnOnScreenFullyWithBacklightSource: (long long) arg0 {
+
+	if (preventWake){ return; }
+	else{ %orig; }
 }
 %end

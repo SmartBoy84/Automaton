@@ -1,7 +1,9 @@
 TARGET := iphone:clang:latest
 ARCHS = arm64 arm64e
 
-THEOS_DEVICE_IP=le-carote
+THEOS_DEVICE_IP = le-carote
+DEBUG = 0
+FINALPACKAGE = 1
 
 include $(THEOS)/makefiles/common.mk
 

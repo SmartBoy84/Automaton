@@ -1,3 +1,5 @@
+#import "../Globals.h"
+
 @interface SBMediaController
 + (id)sharedInstance;
 - (BOOL)isPaused;
