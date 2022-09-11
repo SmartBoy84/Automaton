@@ -1,4 +1,7 @@
 #import <libpowercuts/libpowercuts.h>
+#import <SpringBoard/SpringBoard.h>
+#include <CoreFoundation/CoreFoundation.h>
+#import <notify.h>
 #import "Actions.h"
 
 @interface PlayerState : PCAction
@@ -96,10 +99,9 @@ NSString *maxWake = @"Max preventions";
     if (parameters && parameters[@"notification"] && ((NSString*)parameters[@"notification"]).length > 0) {
         
         NSLog(@"[Automaton] posting...");
-    [[NSNotificationCenter defaultCenter] 
-        postNotificationName:parameters[@"notification"] 
-        object:nil];
-    success(NULL);
+// [@"..." UTF8String];
+        CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), ((__bridge CFStringRef)((NSString*)parameters[@"notification"])), NULL, NULL, TRUE);
+        success(NULL);
     } else {
         //Parameters are incorrect, notify the failure with explanation.
         fail(@"You must provide correct parameter!");
