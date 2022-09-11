@@ -99,6 +99,7 @@ NSString *maxWake = @"Max preventions";
     [[NSNotificationCenter defaultCenter] 
         postNotificationName:parameters[@"notification"] 
         object:nil];
+    success(NULL);
     } else {
         //Parameters are incorrect, notify the failure with explanation.
         fail(@"You must provide correct parameter!");
