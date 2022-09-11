@@ -89,7 +89,52 @@ NSString *maxWake = @"Max preventions";
 }
 @end
 
+@interface PostInternalNotification : PCAction
+@end
+@implementation PostInternalNotification
+-(void) performActionForIdentifier:(NSString*)identifier withParameters:(NSDictionary*)parameters success:(void (^)(id _Nullable output))success fail:(void (^)(NSString *error))fail {
+    if (parameters && parameters[@"notification"] && ((NSString*)parameters[@"notification"]).length > 0) {
+        
+        NSLog(@"[Automaton] posting...");
+    [[NSNotificationCenter defaultCenter] 
+        postNotificationName:parameters[@"notification"] 
+        object:nil];
+    } else {
+        //Parameters are incorrect, notify the failure with explanation.
+        fail(@"You must provide correct parameter!");
+    }
+}
+-(NSString*) nameForIdentifier:(NSString*)identifier {
+    return @"Post notification";
+}
+-(NSString*) descriptionSummaryForIdentifier:(NSString*)identifier {
+    return @"Action to post to the internal notification centre";
+}
+
+//Provide additional keywords to your action
+-(NSArray<NSString*>*) keywordsForIdentifier:(NSString*)identifier {
+    return @[@"notifcation", @"post", @"centre"];
+}
+
+
+-(NSArray*) parametersDefinitionForIdentifier:(NSString*)identifier {
+    return @[
+        @{
+            @"type" : @"text",
+            @"key" : @"notification",
+            @"label" : @"Content to post",
+            @"placeholder" : @"com.example.function/post"
+        }
+    ];
+}
+-(NSString*) parameterSummaryForIdentifier:(NSString*)identifier {
+    return @"Post to NSNotificationCentre:";
+}
+
+@end
+
 %ctor {
     [[PowercutsManager sharedInstance] registerActionWithIdentifier:@"com.barfie.automaton.action.playerState" action:[PlayerState new]];
     [[PowercutsManager sharedInstance] registerActionWithIdentifier:@"com.barfie.automaton.action.requestWakePrevention" action:[RequestWakePrevention new]];
+    [[PowercutsManager sharedInstance] registerActionWithIdentifier:@"com.barfie.automaton.action.postInternalNotification" action:[PostInternalNotification new]];
 }

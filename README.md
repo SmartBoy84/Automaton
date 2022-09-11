@@ -12,3 +12,4 @@ Activator
 
 Powercuts
 - action to get state of media player (playing/paused)
+- action to post notifcation to NSNotificationCentre
