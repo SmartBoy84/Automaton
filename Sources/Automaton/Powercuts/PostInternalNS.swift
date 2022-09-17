@@ -3,10 +3,10 @@ import CoreFoundation
 import Foundation
 import Orion
 
-@objc public class PostInternalNotification: PCAction {
+class PostInternalNotification: PCAction {
     let actionKey = "notification"
 
-    override public func perform(forIdentifier _: String, withParameters parameters: [AnyHashable: Any], success: @escaping (Any?) -> Void, fail: @escaping (String) -> Void) {
+    override func perform(forIdentifier _: String, withParameters parameters: [AnyHashable: Any], success: @escaping (Any?) -> Void, fail: @escaping (String) -> Void) {
         guard parameters.count > 0, !((parameters[actionKey] as? String) ?? "").isEmpty
         else {
             fail("You must provide the correct parameters!")
@@ -21,19 +21,19 @@ import Orion
         success(nil)
     }
 
-    override public func name(forIdentifier _: String) -> String {
+    override func name(forIdentifier _: String) -> String {
         "Post to NSNotificationCentre"
     }
 
-    override public func keywords(forIdentifier _: String) -> [String] {
+    override func keywords(forIdentifier _: String) -> [String] {
         ["notifcation", "post", "centre"]
     }
 
-    override public func descriptionSummary(forIdentifier _: String) -> String {
+    override func descriptionSummary(forIdentifier _: String) -> String {
         "Action to post to the internal notification centre"
     }
 
-    override public func parametersDefinition(forIdentifier _: String) -> [Any] {
+    override func parametersDefinition(forIdentifier _: String) -> [Any] {
         [["type": "text",
           "key": actionKey,
           "label": "Content to post",

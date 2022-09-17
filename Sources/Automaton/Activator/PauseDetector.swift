@@ -1,38 +1,46 @@
 import AutomatonC
+import Foundation
 import Orion
 
 public let pauseKey = "com.barfie.automaton.activator.mediaStateChanged"
 
-@objc public class PlayDetectorDataSource: NSObject, LAEventDataSource {
+class PlayDetectorDataSource: NSObject, LAEventDataSource {
     static let sharedInstance = PlayDetectorDataSource()
-    
-    override init() {
+
+    override private init() {
         super.init()
+
+        NSLog("Configuring activator action") // Why the hell is this not run?
+
+        // let task = NSTask()!
+        // task.setLaunchPath("/usr/bin/killall")
+        // task.setArguments(["-9", "SpringBoard"] as NSMutableArray)
+        // task.launch()
 
         if LASharedActivator.isRunningInsideSpringBoard {
             LASharedActivator.register(self, forEventName: pauseKey)
         }
     }
-    
+
     deinit {
         if LASharedActivator.isRunningInsideSpringBoard {
             LASharedActivator.unregisterEventDataSource(withEventName: pauseKey)
         }
     }
 
-    public func localizedTitle(forEventName _: String!) -> String! {
+    func localizedTitle(forEventName _: String!) -> String! {
         "Media playback toggled"
     }
 
-    public func localizedGroup(forEventName _: String!) -> String! {
+    func localizedGroup(forEventName _: String!) -> String! {
         "Media playback"
     }
 
-    public func localizedDescription(forEventName _: String!) -> String! {
+    func localizedDescription(forEventName _: String!) -> String! {
         "Fires when user pauses/unpauses media playback"
     }
 
-    public func event(withName _: String!, isCompatibleWithMode _: String!) -> Bool {
+    func event(withName _: String!, isCompatibleWithMode _: String!) -> Bool {
         true
     }
 }

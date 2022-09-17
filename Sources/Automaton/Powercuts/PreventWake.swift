@@ -4,7 +4,7 @@ import Orion
 
 public var preventCounter = 0
 
-@objc public class RequestWakePrevention: PCAction {
+class RequestWakePrevention: PCAction {
     let wakeKey = "State"
     let maxWake = "Max preventions"
 
@@ -13,7 +13,7 @@ public var preventCounter = 0
         "Prevent",
     ]
 
-    override public func perform(forIdentifier _: String, withParameters parameters: [AnyHashable: Any], success: @escaping (Any?) -> Void, fail: @escaping (String) -> Void) {
+    override func perform(forIdentifier _: String, withParameters parameters: [AnyHashable: Any], success: @escaping (Any?) -> Void, fail: @escaping (String) -> Void) {
         guard let wakeType = screenModes.firstIndex(of: (parameters[wakeKey] as? String) ?? ""),
               let wakeTokens = parameters[maxWake] as? Int
         else {
@@ -25,15 +25,19 @@ public var preventCounter = 0
         success(nil)
     }
 
-    override public func name(forIdentifier _: String) -> String {
+    override func name(forIdentifier _: String) -> String {
         "Disable/enable screen wakeup"
     }
 
-    override public func descriptionSummary(forIdentifier _: String) -> String {
+    override func keywords(forIdentifier _: String) -> [String] {
+        ["screen", "wake", "prevent", "sleep", "allow"]
+    }
+
+    override func descriptionSummary(forIdentifier _: String) -> String {
         "Disable/enable screen wake"
     }
 
-    override public func parametersDefinition(forIdentifier _: String) -> [Any] {
+    override func parametersDefinition(forIdentifier _: String) -> [Any] {
         return [
             [
                 "type": "enum",
@@ -56,7 +60,7 @@ public var preventCounter = 0
         ]
     }
 
-    override public func parameterSummary(forIdentifier _: String) -> String {
+    override func parameterSummary(forIdentifier _: String) -> String {
         "${\(wakeKey)} screen wakeup"
     }
 }

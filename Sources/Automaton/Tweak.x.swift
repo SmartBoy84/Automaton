@@ -11,7 +11,7 @@ class SpringBoardHook: ClassHook<SpringBoard> {
         PowercutsManager.sharedInstance().registerAction(withIdentifier: "com.barfie.automaton.action.postInternalNotification", action: PostInternalNotification())
 
         NSLog("[Automaton] Registering activator listeners")
-        _ = PlayDetectorDataSource()
+        _ = PlayDetectorDataSource.sharedInstance // lazy initialization? idk but this works
     }
 }
 
