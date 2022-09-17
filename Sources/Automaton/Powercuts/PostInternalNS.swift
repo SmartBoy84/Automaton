@@ -14,15 +14,15 @@ import Orion
         }
 
         NSLog("[Automaton] posting...")
-        let cfstr = "com.apple.springboard.hasBlankedScreen" as CFString
+        // let cfstr = "com.cosmogenius.screendump/restart" as CFString
         
-        CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFNotificationName(cfstr), nil, nil, true)
-        // CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFNotificationName((parameters[actionKey] as! String) as CFString), nil, nil, true)
+        // CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFNotificationName(cfstr), nil, nil, true)
+        CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFNotificationName((parameters[actionKey] as! String) as CFString), nil, nil, true)
         success(nil)
     }
 
     override public func name(forIdentifier _: String) -> String {
-        "Post notification"
+        "Post to NSNotificationCentre"
     }
 
     override public func keywords(forIdentifier _: String) -> [String] {
