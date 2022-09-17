@@ -1,9 +1,0 @@
-Package: com.barfie.automaton
-Name: Automaton
-Depends: mobilesubstrate, firmware (>= 14.0), com.anthopak.powercuts (>= 1.1)
-Version: 1.0
-Architecture: iphoneos-arm
-Description: My action bank for iOS shortcuts + activator events & actions
-Maintainer: Hamdan
-Author: Hamdan
-Section: Tweaks

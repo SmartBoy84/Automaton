@@ -1,1 +1,0 @@
-void setToken(int prevent);
