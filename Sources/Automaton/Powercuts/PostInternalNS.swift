@@ -13,11 +13,9 @@ class PostInternalNotification: PCAction {
             return
         }
 
-        NSLog("[Automaton] posting...")
-        // let cfstr = "com.cosmogenius.screendump/restart" as CFString
+        NSLog("[Automaton] posting \((parameters[actionKey] as! CFString))")
         
-        // CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFNotificationName(cfstr), nil, nil, true)
-        CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFNotificationName((parameters[actionKey] as! String) as CFString), nil, nil, true)
+        CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFNotificationName(parameters[actionKey] as! CFString), nil, nil, true)
         success(nil)
     }
 

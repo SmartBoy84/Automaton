@@ -29,6 +29,7 @@ class SBBacklightControllerTing: ClassHook<SBBacklightController> {
             orig.turnOnScreenFullyWithBacklightSource(arg0)
 
         } else {
+
             preventCounter -= 1
             return
         }
