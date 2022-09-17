@@ -1,0 +1,9 @@
+Package: com.barfie.automaton
+Name: Automaton
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Collection of personal powercut actions + activator listeners
+Maintainer: Hamdan Mahmood
+Author: Hamdan Mahmood
+Section: Tweaks
+Depends: ${ORION}, firmware (>= 12.2)

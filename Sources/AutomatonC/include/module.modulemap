@@ -1,0 +1,4 @@
+module AutomatonC {
+    umbrella "."
+    export *
+}
